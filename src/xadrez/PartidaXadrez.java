@@ -50,6 +50,7 @@ public class PartidaXadrez {
 	}
 	
 	// colocando peças passando a posição das coordenadas do xadrez
+<<<<<<< HEAD
 		private void lugarNovaPeca(char coluna, int linha, PecaXadrez peca) {
 			tabuleiro.lugarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
 		}
@@ -62,6 +63,18 @@ public class PartidaXadrez {
 		lugarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
 		lugarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
 		lugarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+=======
+	private void lugarNovaPeca(char coluna, int linha, PecaXadrez peca) {
+		tabuleiro.lugarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
+	}
+	
+	// iniciando a partida de xadrez, colocando as peças no tabuleiro
+	private void iniciarPartida() {
+		lugarNovaPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		lugarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+	}
+>>>>>>> 4589c2fd38ff326c05dfebf4cf6c435d11c8013d
 
 		lugarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
 		lugarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
@@ -70,5 +83,4 @@ public class PartidaXadrez {
         lugarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
         lugarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
-
 }
