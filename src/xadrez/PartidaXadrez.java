@@ -1,6 +1,5 @@
 package xadrez;
 
-import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -27,11 +26,26 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+	// colocando peças passando a posição das coordenadas do xadrez
+		private void lugarNovaPeca(char coluna, int linha, PecaXadrez peca) {
+			tabuleiro.lugarPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
+		}
+	
 	// iniciando a partida de xadrez, colocando as peças no tabuleiro
 	private void iniciarPartida() {
-		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(7, 4));
+		lugarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
+		lugarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+
+		lugarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
+		lugarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
+		lugarNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
+		lugarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
+        lugarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
+        lugarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 
 }
