@@ -9,7 +9,7 @@ public class Tabuleiro {
 	public Tabuleiro(int linhas, int colunas) {
 		
 		if (linhas < 1 || colunas < 1) {
-			throw new TabuleiroExcecao("Erro criando tabuleiro: É necessário que haja pelo menos 1 linha e 1 coluna");
+			throw new TabuleiroExcecao("Erro criando tabuleiro: Eh necessario que haja pelo menos 1 linha e 1 coluna");
 		}
 		
 		this.linhas = linhas;
@@ -28,7 +28,7 @@ public class Tabuleiro {
 	// metodo para retornar a peça dada uma linha e uma coluna
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExiste(linha, coluna)) { // se essa posição n existe
-			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro!");
+			throw new TabuleiroExcecao("Essa posicao nao existe no tabuleiro!");
 		}
 		return pecas[linha][coluna];
 	}
@@ -36,7 +36,7 @@ public class Tabuleiro {
 	//sobrecarga do metodo
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro!");
+			throw new TabuleiroExcecao("Essa posicao nao existe no tabuleiro!");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
@@ -45,10 +45,23 @@ public class Tabuleiro {
 	// pegando a matrix pecas na posicao dada e atribuir a ela a peca informada
 	public void lugarPeca(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
-			throw new TabuleiroExcecao("Já tem uma peça nessa posição: " + posicao);
+			throw new TabuleiroExcecao("Ja tem uma peca nessa posiçao: " + posicao);
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao; // tirando o null da peça
+	}
+	
+	public Peca removerPeca(Posicao posicao) {
+		if (!posicaoExiste(posicao)) { // se essa posicao nao existe, lance uma excecao
+			throw new TabuleiroExcecao("Essa posicao nao existe no tabuleiro!");
+		}
+		if (peca(posicao) == null) {
+			return null; // se for vdd n tem nenhuma peca nessa posicao
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null; // peça retirada no tabuleiro recebendo null
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
 	}
 	
 	// metodo para ver se existe essa posicao passando linha e coluna
@@ -65,7 +78,7 @@ public class Tabuleiro {
 	// metodo testando se tem uma peça nessa posicao
 	public boolean temUmaPeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro!");
+			throw new TabuleiroExcecao("Essa posicao nao existe no tabuleiro!");
 		}
 		return peca(posicao) != null;
 	}

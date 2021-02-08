@@ -9,7 +9,7 @@ public class PosicaoXadrez {
 
 	public PosicaoXadrez(char coluna, int linha) {
 		if (coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8) {
-			throw new XadrezExcecao("Erro instanciando PosicaoXadrez. Valores de a1 até h8");
+			throw new XadrezExcecao("Erro instanciando PosicaoXadrez. Valores de a1 ate h8");
 		}
 		this.coluna = coluna;
 		this.linha = linha;
