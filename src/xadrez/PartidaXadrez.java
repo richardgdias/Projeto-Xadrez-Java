@@ -47,6 +47,9 @@ public class PartidaXadrez {
 		if (!tabuleiro.temUmaPeca(posicao)) {
 			throw new XadrezExcecao("Nao existe peca na posicao de origem");
 		}
+		if (!tabuleiro.peca(posicao).existeAlgumMovimento()) {
+			throw new XadrezExcecao("Nao existe movimentos possiveis para peca escolhida");
+		}
 	}
 
 	// colocando peças passando a posição das coordenadas do xadrez
