@@ -30,7 +30,7 @@ public class PosicaoXadrez {
 
 	// metodo retornando a forma inversa do toPosicao
 	protected static PosicaoXadrez fromPosicao(Posicao posicao) {
-		return new PosicaoXadrez((char) ('a' - posicao.getColuna()), 8 - posicao.getLinha());
+		return new PosicaoXadrez((char) ('a' + posicao.getColuna()), 8 - posicao.getLinha());
 	}
 
 	@Override
