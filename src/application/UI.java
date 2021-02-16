@@ -52,15 +52,21 @@ public class UI {
 			throw new InputMismatchException("Erro lendo PosicaoXadrez. Valores sao de a1 ate h8");
 		}
 	}
-	
+
 	public static void printPartida(PartidaXadrez partidaXadrez, List<PecaXadrez> capturado) {
 		printTabuleiro(partidaXadrez.getPecas());
 		System.out.println();
 		printCapturaPecas(capturado);
 		System.out.println("Turno: " + partidaXadrez.getTurno());
-		System.out.println("Esperando jogador: " + partidaXadrez.getJogadorAtual());
-		if (partidaXadrez.getCheck()) {
-			System.out.println("CHECK!");
+		if (!partidaXadrez.getCheckMate()) {
+			System.out.println("Esperando jogador: " + partidaXadrez.getJogadorAtual());
+			if (partidaXadrez.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Vencedor: " + partidaXadrez.getJogadorAtual());
 		}
 	}
 
@@ -77,7 +83,7 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 
 	}
-	
+
 	public static void printTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
 		for (int i = 0; i < pecas.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -106,10 +112,16 @@ public class UI {
 		}
 		System.out.print(" ");
 	}
-	
+
 	private static void printCapturaPecas(List<PecaXadrez> capturado) {
-		List<PecaXadrez> branco = capturado.stream().filter(x -> x.getCor() == Cor.BRANCO).collect(Collectors.toList()); // filtrando por cor branca
-		List<PecaXadrez> preto = capturado.stream().filter(x -> x.getCor() == Cor.PRETO).collect(Collectors.toList()); // filtrando por cor preta
+		List<PecaXadrez> branco = capturado.stream().filter(x -> x.getCor() == Cor.BRANCO).collect(Collectors.toList()); // filtrando
+																															// por
+																															// cor
+																															// branca
+		List<PecaXadrez> preto = capturado.stream().filter(x -> x.getCor() == Cor.PRETO).collect(Collectors.toList()); // filtrando
+																														// por
+																														// cor
+																														// preta
 		System.out.println("Capturando pecas: ");
 		System.out.print("Branco: ");
 		System.out.print(ANSI_WHITE);
@@ -119,17 +131,6 @@ public class UI {
 		System.out.print(ANSI_YELLOW);
 		System.out.println(Arrays.toString(preto.toArray()));
 		System.out.println(ANSI_RESET);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
